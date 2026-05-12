@@ -1,4 +1,7 @@
-"""PhageHostLearn on PBIP: cipher's RBPs + Kaptive Locibase for 125 hosts."""
+"""PhageHostLearn on PBIP: cipher's RBPs + Kaptive Locibase for 125 hosts.
+
+Paths come from phagehostlearn.env (source it before running). See config.py.
+"""
 import json, csv
 from pathlib import Path
 from collections import defaultdict
@@ -10,12 +13,10 @@ from Bio import SeqIO
 from xgboost import XGBClassifier
 from tqdm import tqdm
 
-ROOT = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
-CIPHER = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher")
-PBIP = Path("/Users/leannmlindsey/WORK/cipher_data/validation_genomes/PBIP")
-OUT_DIR = ROOT/"data/cipher_eval/PBIP/phagehostlearn_run"
+from config import PHL_REPO as ROOT, CIPHER_REPO as CIPHER, CIPHER_VAL_GENOMES, PHL_OUTPUT_ROOT, XGB_MODEL
+PBIP = CIPHER_VAL_GENOMES / "PBIP"
+OUT_DIR = PHL_OUTPUT_ROOT / "PBIP" / "phagehostlearn_run"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-XGB_MODEL = ROOT/"code/phagehostlearn_esm2_xgb.json"
 
 ESM2_NAME = "facebook/esm2_t33_650M_UR50D"
 EMBED_DIM = 1280

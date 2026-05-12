@@ -26,13 +26,11 @@ from Bio import SeqIO
 from xgboost import XGBClassifier
 from tqdm import tqdm
 
-ROOT = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
-CIPHER = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher")
+from config import PHL_REPO as ROOT, CIPHER_REPO as CIPHER, PHL_OUTPUT_ROOT, XGB_MODEL
 DATASET = "GORODNICHIV"
-OUT_DIR = ROOT/"data/cipher_eval/GORODNICHIV/phagehostlearn_run"
+OUT_DIR = PHL_OUTPUT_ROOT / DATASET / "phagehostlearn_run"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 KAPTIVE_DB = ROOT/"data/kaptive_db/Klebsiella_k_locus_primary_reference.gbk"
-XGB_MODEL = ROOT/"code/phagehostlearn_esm2_xgb.json"
 
 ESM2_NAME = "facebook/esm2_t33_650M_UR50D"
 EMBED_DIM = 1280

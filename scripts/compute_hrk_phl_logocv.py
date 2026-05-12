@@ -17,9 +17,13 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 
-PHL_LOGOCV = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn/data/cipher_eval/PHL/phagehostlearn_logocv")
-CIPHER = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher/data/validation_data/HOST_RANGE/PhageHostLearn/metadata")
-DPOT = Path("/Users/leannmlindsey/WORK/CLAUDE_DPOTROPISEARCH/claude_copy/DpoTropiSearch")
+import os as _os
+from config import CIPHER_REPO, PHL_OUTPUT_ROOT
+PHL_LOGOCV = PHL_OUTPUT_ROOT / "PHL" / "phagehostlearn_logocv"
+CIPHER = CIPHER_REPO / "data" / "validation_data" / "HOST_RANGE" / "PhageHostLearn" / "metadata"
+# DPOT (DpoTropiSearch leaderboard refresh location) — optional; only used
+# if you run the standalone subset/aggregation logic. Override with $DPOT_REPO.
+DPOT = Path(_os.environ.get("DPOT_REPO", "."))
 
 # Load LOGO-CV predictions and pivot to (host x phage) score matrix
 df = pd.read_csv(PHL_LOGOCV / "logocv_predictions.csv")

@@ -27,7 +27,8 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 
-CIPHER_DATA = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher/data/validation_data")
+from config import CIPHER_REPO
+CIPHER_DATA = CIPHER_REPO / "data" / "validation_data"
 KS = list(range(1, 21))
 
 

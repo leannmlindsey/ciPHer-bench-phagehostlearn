@@ -10,12 +10,10 @@ from Bio import SeqIO
 from xgboost import XGBClassifier
 from tqdm import tqdm
 
-ROOT = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
-CIPHER = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher")
-UCSD = Path("/Users/leannmlindsey/WORK/cipher_data/validation_genomes/UCSD")
-OUT_DIR = ROOT/"data/cipher_eval/UCSD/phagehostlearn_run"
+from config import PHL_REPO as ROOT, CIPHER_REPO as CIPHER, CIPHER_VAL_GENOMES, PHL_OUTPUT_ROOT, XGB_MODEL
+UCSD = CIPHER_VAL_GENOMES / "UCSD"
+OUT_DIR = PHL_OUTPUT_ROOT / "UCSD" / "phagehostlearn_run"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-XGB_MODEL = ROOT/"code/phagehostlearn_esm2_xgb.json"
 LOCIBASE = UCSD/"kaptive_out/Locibase.json"
 
 ESM2_NAME = "facebook/esm2_t33_650M_UR50D"

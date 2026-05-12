@@ -16,12 +16,11 @@ import numpy as np
 import pandas as pd
 from xgboost import XGBClassifier
 
-ROOT = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
-CIPHER = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher/data/validation_data/HOST_RANGE/PhageHostLearn/metadata")
+from config import PHL_REPO as ROOT, CIPHER_REPO as _CIPHER_REPO, PHL_OUTPUT_ROOT, XGB_MODEL
+CIPHER = _CIPHER_REPO / "data" / "validation_data" / "HOST_RANGE" / "PhageHostLearn" / "metadata"
 ZEN = ROOT / "data" / "zenodo_11061100" / "11061100_unpacked"
-XGB_MODEL = ROOT / "code" / "phagehostlearn_esm2_xgb.json"
 
-OUT_DIR = ROOT / "data" / "cipher_eval" / "PHL" / "phagehostlearn_run"
+OUT_DIR = PHL_OUTPUT_ROOT / "PHL" / "phagehostlearn_run"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 EMBED_DIM = 1280
 

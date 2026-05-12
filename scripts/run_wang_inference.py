@@ -25,18 +25,18 @@ from transformers import AutoTokenizer, AutoModel
 from xgboost import XGBClassifier
 from tqdm import tqdm
 
-ROOT = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
-WANG = Path("/Users/leannmlindsey/WORK/cipher_data/validation_genomes/Wang")
+from config import PHL_REPO as ROOT, CIPHER_VAL_GENOMES, PHL_OUTPUT_ROOT, XGB_MODEL
+WANG = CIPHER_VAL_GENOMES / "Wang"
 HOSTS = WANG/"extracted_full/host_kp_genomes"
 ANNOS = WANG/"extracted_full/real_phage_annos.csv"
 RBP_PKL = WANG/"phage_protein_ts_prediction_and_esm_embedding.pkl"
 
-OUT_DIR = ROOT/"data/cipher_eval/Wang/phagehostlearn_run"
+OUT_DIR = PHL_OUTPUT_ROOT / "Wang" / "phagehostlearn_run"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 KAPTIVE_DB = ROOT/"data/kaptive_db/Klebsiella_k_locus_primary_reference.gbk"
 KAPTIVE_PY = ROOT/"code/kaptive.py"
-XGB_MODEL = ROOT/"code/phagehostlearn_esm2_xgb.json"
-TROPISEQ_BIN = "/Users/leannmlindsey/miniconda3/envs/TropiSEQ_env/bin"
+import os as _os
+TROPISEQ_BIN = _os.environ.get("BLAST_BIN_DIR", "")
 
 ESM2_NAME = "facebook/esm2_t33_650M_UR50D"
 EMBED_DIM = 1280

@@ -23,9 +23,9 @@ import pandas as pd
 from xgboost import XGBClassifier
 from sklearn.model_selection import LeaveOneGroupOut
 
-REPO = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
+from config import PHL_REPO as REPO, PHL_OUTPUT_ROOT
 DATA = REPO / "data" / "zenodo_11061100" / "11061100_unpacked"
-OUT  = REPO / "data" / "cipher_eval" / "PHL" / "phagehostlearn_logocv"
+OUT  = PHL_OUTPUT_ROOT / "PHL" / "phagehostlearn_logocv"
 OUT.mkdir(parents=True, exist_ok=True)
 
 print("[1] Loading embeddings + interaction matrix", flush=True)

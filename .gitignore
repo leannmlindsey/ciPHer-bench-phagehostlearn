@@ -1,0 +1,34 @@
+# Local environment configuration (machine-specific paths)
+# Copy config/*.env.template to <repo>.env at the repo root and edit
+*.env
+!config/*.env.template
+!config/*.env
+
+# Upstream code — clone separately per SETUP.md
+PhageHostLearn/
+code/
+data/
+analysis_notebooks/
+
+# Large data we never commit
+*.faa
+*.fasta
+*.fa
+*.fna
+*.pt
+*.pth
+*.h5
+*.ckpt
+*.json.gz
+embeddings/
+
+# Run outputs
+predictions/
+data/cipher_eval/
+*.log
+
+# Caches
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
+*.pyc

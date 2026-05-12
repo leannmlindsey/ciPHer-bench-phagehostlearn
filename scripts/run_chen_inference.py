@@ -25,16 +25,17 @@ from Bio import SeqIO
 from xgboost import XGBClassifier
 from tqdm import tqdm
 
-ROOT = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
-CIPHER = Path("/Users/leannmlindsey/WORK/PHI_TSP/cipher")
+from config import PHL_REPO as ROOT, CIPHER_REPO as CIPHER, CIPHER_VAL_GENOMES, PHL_OUTPUT_ROOT, XGB_MODEL
 DATASET = "CHEN"
-OUT_DIR = ROOT / "data" / "cipher_eval" / DATASET / "phagehostlearn_run"
+OUT_DIR = PHL_OUTPUT_ROOT / DATASET / "phagehostlearn_run"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 KAPTIVE_DB = ROOT / "data" / "kaptive_db" / "Klebsiella_k_locus_primary_reference.gbk"
 KAPTIVE_PY = ROOT / "code" / "kaptive.py"
-XGB_MODEL = ROOT / "code" / "phagehostlearn_esm2_xgb.json"
-# Use TropiSEQ_env's conda BLAST (brew's blast has an mbedtls mismatch).
-TROPISEQ_BIN = "/Users/leannmlindsey/miniconda3/envs/TropiSEQ_env/bin"
+# BLAST binary lives in your active conda env (e.g. PHL_CONDA_ENV).
+# Override with $BLAST_BIN_DIR if you keep blast elsewhere; otherwise we
+# trust PATH (mmseqs2 / blast are commonly available on cluster nodes).
+import os as _os
+TROPISEQ_BIN = _os.environ.get("BLAST_BIN_DIR", "")
 
 ESM2_NAME = "facebook/esm2_t33_650M_UR50D"
 EMBED_DIM = 1280

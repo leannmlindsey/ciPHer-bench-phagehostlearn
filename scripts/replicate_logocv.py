@@ -10,7 +10,7 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings("ignore")
 
-REPO = Path("/Users/leannmlindsey/WORK/CLAUDE_PHAGEHOSTLEARN/claude_copy/PhageHostLearn")
+from config import PHL_REPO as REPO
 DATA = REPO / "data" / "zenodo_11061100" / "11061100_unpacked"
 sys.path.insert(0, str(REPO / "code"))
 
