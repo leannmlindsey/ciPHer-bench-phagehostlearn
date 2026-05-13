@@ -1,0 +1,29 @@
+# Conda env for PhageHostLearn on Delta.
+#
+# Build:
+#   conda env create -f environment.yml
+# Activate:
+#   conda activate phagehostlearn
+#
+# Note: ESM-2 650M (~2.5 GB) is downloaded by transformers on first run.
+
+name: phagehostlearn
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      # PyTorch on Delta GH200 (aarch64 + CUDA). Pull from PyTorch's wheel
+      # index so we get a CUDA-enabled aarch64 build. Comment out the
+      # --extra-index-url line if your hardware uses CPU-only torch.
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch
+      - transformers
+      - xgboost
+      - biopython
+      - pandas
+      - tqdm
+      - scikit-learn
+      - numpy

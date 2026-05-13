@@ -49,11 +49,13 @@ cd ..
 ## 3. Build the conda env (one-time)
 
 ```bash
-module load anaconda3 2>/dev/null || true
-eval "$(conda shell.bash hook)"
-conda create -n phagehostlearn python=3.10 -y
+# Make sure conda is installed (Miniforge under project space is fine):
+#   wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-$(uname -m).sh
+#   bash Miniforge3-Linux-$(uname -m).sh -b -p /projects/bfzj/llindsey1/miniforge3
+#   source /projects/bfzj/llindsey1/miniforge3/etc/profile.d/conda.sh
+
+conda env create -f environment.yml
 conda activate phagehostlearn
-pip install torch transformers xgboost biopython pandas tqdm scikit-learn numpy
 ```
 
 ESM-2 650M (~2.5 GB) is auto-downloaded by `transformers` on first run.
